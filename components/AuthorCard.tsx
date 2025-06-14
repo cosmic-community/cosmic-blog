@@ -7,7 +7,7 @@ interface AuthorCardProps {
 
 export default function AuthorCard({ author, showBio = true }: AuthorCardProps) {
   return (
-    <div className="bg-gray-50 rounded-lg p-6 mt-8">
+    <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 mt-8">
       <div className="flex items-start space-x-4">
         {author.metadata.profile_photo && (
           <img
@@ -20,12 +20,12 @@ export default function AuthorCard({ author, showBio = true }: AuthorCardProps) 
         )}
         
         <div className="flex-1">
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
             About {author.metadata.name || author.title}
           </h3>
           
           {showBio && author.metadata.bio && (
-            <p className="text-gray-600 mb-4 leading-relaxed">
+            <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
               {author.metadata.bio}
             </p>
           )}
@@ -36,7 +36,7 @@ export default function AuthorCard({ author, showBio = true }: AuthorCardProps) 
                 href={author.metadata.website_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors"
+                className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm font-medium transition-colors"
               >
                 Website
               </a>
@@ -47,7 +47,7 @@ export default function AuthorCard({ author, showBio = true }: AuthorCardProps) 
                 href={`https://twitter.com/${author.metadata.twitter_handle}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors"
+                className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm font-medium transition-colors"
               >
                 Twitter
               </a>
@@ -58,7 +58,7 @@ export default function AuthorCard({ author, showBio = true }: AuthorCardProps) 
                 href={author.metadata.linkedin_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors"
+                className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm font-medium transition-colors"
               >
                 LinkedIn
               </a>
@@ -67,7 +67,7 @@ export default function AuthorCard({ author, showBio = true }: AuthorCardProps) 
             {author.metadata.email && (
               <a
                 href={`mailto:${author.metadata.email}`}
-                className="text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors"
+                className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm font-medium transition-colors"
               >
                 Email
               </a>

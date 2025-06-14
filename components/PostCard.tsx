@@ -25,7 +25,7 @@ export default function PostCard({ post, featured = false }: PostCardProps) {
   }
 
   return (
-    <article className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+    <article className="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg dark:shadow-gray-900/20 overflow-hidden transition-all duration-300">
       {post.metadata.featured_image && (
         <Link href={`/posts/${post.slug}`}>
           <img
@@ -41,7 +41,7 @@ export default function PostCard({ post, featured = false }: PostCardProps) {
       <div className="p-6">
         <div className="flex items-center justify-between mb-3">
           <CategoryBadge category={category} />
-          <time className="text-sm text-gray-500">
+          <time className="text-sm text-gray-500 dark:text-gray-400">
             {formatDate(publicationDate)}
           </time>
         </div>
@@ -49,14 +49,14 @@ export default function PostCard({ post, featured = false }: PostCardProps) {
         <h2 className="text-xl font-semibold mb-3">
           <Link 
             href={`/posts/${post.slug}`}
-            className="text-gray-900 hover:text-blue-600 transition-colors"
+            className="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
           >
             {post.metadata.title || post.title}
           </Link>
         </h2>
         
         {post.metadata.excerpt && (
-          <p className="text-gray-600 mb-4 line-clamp-3">
+          <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
             {post.metadata.excerpt}
           </p>
         )}
@@ -72,14 +72,14 @@ export default function PostCard({ post, featured = false }: PostCardProps) {
                 height={40}
               />
             )}
-            <span className="text-sm text-gray-700">
+            <span className="text-sm text-gray-700 dark:text-gray-300">
               {author.metadata.name || author.title}
             </span>
           </div>
           
           <Link 
             href={`/posts/${post.slug}`}
-            className="text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors"
+            className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm font-medium transition-colors"
           >
             Read More →
           </Link>

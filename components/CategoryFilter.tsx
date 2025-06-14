@@ -15,8 +15,8 @@ export default function CategoryFilter({ categories, selectedCategory, onCategor
         onClick={() => onCategoryChange(null)}
         className={`px-4 py-2 rounded-full font-medium transition-colors ${
           selectedCategory === null
-            ? 'bg-gray-900 text-white'
-            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            ? 'bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900'
+            : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
         }`}
       >
         All Posts
@@ -29,12 +29,12 @@ export default function CategoryFilter({ categories, selectedCategory, onCategor
           className={`px-4 py-2 rounded-full font-medium transition-colors ${
             selectedCategory === category.id
               ? 'text-white'
-              : 'text-gray-700 hover:opacity-80'
+              : 'text-gray-700 dark:text-gray-300 hover:opacity-80'
           }`}
           style={{
             backgroundColor: selectedCategory === category.id 
               ? category.metadata.color 
-              : '#f3f4f6',
+              : 'rgb(243 244 246)',
             color: selectedCategory === category.id ? 'white' : category.metadata.color
           }}
         >

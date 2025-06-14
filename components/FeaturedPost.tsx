@@ -24,7 +24,7 @@ export default function FeaturedPost({ post }: FeaturedPostProps) {
   }
 
   return (
-    <article className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg overflow-hidden text-white mb-12">
+    <article className="bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-800 dark:to-purple-800 rounded-lg overflow-hidden text-white mb-12">
       <div className="relative">
         {post.metadata.featured_image && (
           <div className="absolute inset-0">
@@ -35,7 +35,7 @@ export default function FeaturedPost({ post }: FeaturedPostProps) {
               width={1600}
               height={800}
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/90 to-purple-600/90"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/90 to-purple-600/90 dark:from-blue-800/90 dark:to-purple-800/90"></div>
           </div>
         )}
         
@@ -84,7 +84,7 @@ export default function FeaturedPost({ post }: FeaturedPostProps) {
               
               <Link 
                 href={`/posts/${post.slug}`}
-                className="bg-white text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
+                className="bg-white text-blue-600 dark:text-blue-800 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 dark:hover:bg-gray-200 transition-colors"
               >
                 Read Full Article
               </Link>

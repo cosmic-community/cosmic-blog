@@ -33,7 +33,7 @@ export default function BlogContent({ posts, featuredPosts, categories }: BlogCo
       {/* Hero Section with Featured Post - Always show latest regardless of filter */}
       {mainFeatured && (
         <section className="mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-8 text-center">Latest Stories</h1>
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center">Latest Stories</h1>
           <FeaturedPost post={mainFeatured} />
         </section>
       )}
@@ -50,7 +50,7 @@ export default function BlogContent({ posts, featuredPosts, categories }: BlogCo
       {/* Other Featured Posts - Filtered by category */}
       {otherFeaturedFiltered.length > 0 && (
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
             {selectedCategory ? 'Featured Posts in Category' : 'Featured Posts'}
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
@@ -63,7 +63,7 @@ export default function BlogContent({ posts, featuredPosts, categories }: BlogCo
 
       {/* Recent Posts - Filtered by category */}
       <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
           {selectedCategory ? 'Posts in Category' : 'Recent Posts'}
         </h2>
         {filteredPosts.length > 0 ? (
@@ -74,7 +74,7 @@ export default function BlogContent({ posts, featuredPosts, categories }: BlogCo
           </div>
         ) : (
           <div className="text-center py-8">
-            <p className="text-gray-600">No posts found in this category.</p>
+            <p className="text-gray-600 dark:text-gray-400">No posts found in this category.</p>
           </div>
         )}
       </section>
