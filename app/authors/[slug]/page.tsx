@@ -11,14 +11,17 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
   const { slug } = await params
   
   try {
-    const [author, posts]: [Author, Post[]] = await Promise.all([
+    const [authorResult, posts] = await Promise.all([
       getAuthorBySlug(slug),
       getPostsByAuthor(slug)
     ])
 
-    if (!author) {
+    // Handle the case where author is null
+    if (!authorResult) {
       notFound()
     }
+
+    const author: Author = authorResult
 
     return (
       <div className="container mx-auto px-4 py-8">

@@ -11,14 +11,17 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const { slug } = await params
   
   try {
-    const [category, posts]: [Category, Post[]] = await Promise.all([
+    const [categoryResult, posts] = await Promise.all([
       getCategoryBySlug(slug),
       getPostsByCategory(slug)
     ])
 
-    if (!category) {
+    // Handle the case where category is null
+    if (!categoryResult) {
       notFound()
     }
+
+    const category: Category = categoryResult
 
     return (
       <div className="container mx-auto px-4 py-8">
