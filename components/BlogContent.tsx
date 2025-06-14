@@ -15,22 +15,22 @@ interface BlogContentProps {
 export default function BlogContent({ posts, featuredPosts, categories }: BlogContentProps) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
 
-  // Filter posts based on selected category
+  // Always show the main featured post (latest) regardless of category filter
+  const mainFeatured = featuredPosts[0]
+  
+  // Filter other featured posts based on selected category (excluding the main featured)
+  const otherFeaturedFiltered = selectedCategory
+    ? featuredPosts.slice(1).filter(post => post.metadata.category?.id === selectedCategory)
+    : featuredPosts.slice(1)
+
+  // Filter regular posts based on selected category
   const filteredPosts = selectedCategory 
     ? posts.filter(post => post.metadata.category?.id === selectedCategory)
     : posts
 
-  // Filter featured posts based on selected category
-  const filteredFeaturedPosts = selectedCategory
-    ? featuredPosts.filter(post => post.metadata.category?.id === selectedCategory)
-    : featuredPosts
-
-  const mainFeatured = filteredFeaturedPosts[0]
-  const otherFeatured = filteredFeaturedPosts.slice(1)
-
   return (
     <>
-      {/* Hero Section with Featured Post */}
+      {/* Hero Section with Featured Post - Always show latest regardless of filter */}
       {mainFeatured && (
         <section className="mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-8 text-center">Latest Stories</h1>
@@ -47,21 +47,21 @@ export default function BlogContent({ posts, featuredPosts, categories }: BlogCo
         />
       </section>
 
-      {/* Other Featured Posts */}
-      {otherFeatured.length > 0 && (
+      {/* Other Featured Posts - Filtered by category */}
+      {otherFeaturedFiltered.length > 0 && (
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">
             {selectedCategory ? 'Featured Posts in Category' : 'Featured Posts'}
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
-            {otherFeatured.map((post) => (
+            {otherFeaturedFiltered.map((post) => (
               <PostCard key={post.id} post={post} featured={true} />
             ))}
           </div>
         </section>
       )}
 
-      {/* Recent Posts */}
+      {/* Recent Posts - Filtered by category */}
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-6">
           {selectedCategory ? 'Posts in Category' : 'Recent Posts'}
