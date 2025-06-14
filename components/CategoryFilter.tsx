@@ -5,16 +5,15 @@ import { Category } from '../types'
 
 interface CategoryFilterProps {
   categories: Category[]
-  selectedCategory?: string | null
-  onCategoryChange?: (categorySlug: string | null) => void
 }
 
-export default function CategoryFilter({ categories, selectedCategory = null, onCategoryChange }: CategoryFilterProps) {
-  const [localSelected, setLocalSelected] = useState<string | null>(selectedCategory)
-  
+export default function CategoryFilter({ categories }: CategoryFilterProps) {
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+
   const handleCategoryChange = (categorySlug: string | null) => {
-    setLocalSelected(categorySlug)
-    onCategoryChange?.(categorySlug)
+    setSelectedCategory(categorySlug)
+    // In a real implementation, you would filter posts here
+    // For now, this is just visual feedback
   }
 
   return (
@@ -22,7 +21,7 @@ export default function CategoryFilter({ categories, selectedCategory = null, on
       <button
         onClick={() => handleCategoryChange(null)}
         className={`px-4 py-2 rounded-full font-medium transition-colors ${
-          localSelected === null
+          selectedCategory === null
             ? 'bg-gray-900 text-white'
             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
         }`}
@@ -35,15 +34,15 @@ export default function CategoryFilter({ categories, selectedCategory = null, on
           key={category.id}
           onClick={() => handleCategoryChange(category.slug)}
           className={`px-4 py-2 rounded-full font-medium transition-colors ${
-            localSelected === category.slug
+            selectedCategory === category.slug
               ? 'text-white'
               : 'text-gray-700 hover:opacity-80'
           }`}
           style={{
-            backgroundColor: localSelected === category.slug 
+            backgroundColor: selectedCategory === category.slug 
               ? category.metadata.color 
               : '#f3f4f6',
-            color: localSelected === category.slug ? 'white' : category.metadata.color
+            color: selectedCategory === category.slug ? 'white' : category.metadata.color
           }}
         >
           {category.metadata.name}

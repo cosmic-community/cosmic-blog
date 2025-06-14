@@ -1,6 +1,6 @@
 import { getAuthorBySlug, getPostsByAuthor } from '@/lib/api'
 import PostCard from '@/components/PostCard'
-import type { Author, Post } from '@/types'
+import type { Author } from '@/types'
 import { notFound } from 'next/navigation'
 
 interface AuthorPageProps {
@@ -11,17 +11,13 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
   const { slug } = await params
   
   try {
-    const [authorResult, posts] = await Promise.all([
-      getAuthorBySlug(slug),
-      getPostsByAuthor(slug)
-    ])
+    const author = await getAuthorBySlug(slug)
 
-    // Handle the case where author is null
-    if (!authorResult) {
+    if (!author) {
       notFound()
     }
 
-    const author: Author = authorResult
+    const posts = await getPostsByAuthor(author.id)
 
     return (
       <div className="container mx-auto px-4 py-8">

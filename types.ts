@@ -5,7 +5,7 @@ interface CosmicObject {
   title: string;
   content?: string;
   metadata: Record<string, any>;
-  type_slug: string;
+  type: string;
   created_at: string;
   modified_at: string;
   bucket?: string;
@@ -16,7 +16,7 @@ interface CosmicObject {
 
 // Specific object types with properly typed metadata
 export interface Post extends CosmicObject {
-  type_slug: 'posts';
+  type: 'posts';
   metadata: {
     title?: string;
     excerpt?: string;
@@ -33,7 +33,7 @@ export interface Post extends CosmicObject {
 }
 
 export interface Category extends CosmicObject {
-  type_slug: 'categories';
+  type: 'categories';
   metadata: {
     name?: string;
     description?: string;
@@ -42,7 +42,7 @@ export interface Category extends CosmicObject {
 }
 
 export interface Author extends CosmicObject {
-  type_slug: 'authors';
+  type: 'authors';
   metadata: {
     name?: string;
     bio?: string;
@@ -67,15 +67,15 @@ export interface CosmicResponse<T> {
 
 // Type guards for runtime validation
 export function isPost(obj: CosmicObject): obj is Post {
-  return obj.type_slug === 'posts';
+  return obj.type === 'posts';
 }
 
 export function isCategory(obj: CosmicObject): obj is Category {
-  return obj.type_slug === 'categories';
+  return obj.type === 'categories';
 }
 
 export function isAuthor(obj: CosmicObject): obj is Author {
-  return obj.type_slug === 'authors';
+  return obj.type === 'authors';
 }
 
 // Utility types for common patterns

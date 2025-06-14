@@ -1,6 +1,6 @@
 import { getCategoryBySlug, getPostsByCategory } from '@/lib/api'
 import PostCard from '@/components/PostCard'
-import type { Category, Post } from '@/types'
+import type { Category } from '@/types'
 import { notFound } from 'next/navigation'
 
 interface CategoryPageProps {
@@ -11,17 +11,13 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const { slug } = await params
   
   try {
-    const [categoryResult, posts] = await Promise.all([
-      getCategoryBySlug(slug),
-      getPostsByCategory(slug)
-    ])
+    const category = await getCategoryBySlug(slug)
 
-    // Handle the case where category is null
-    if (!categoryResult) {
+    if (!category) {
       notFound()
     }
 
-    const category: Category = categoryResult
+    const posts = await getPostsByCategory(category.id)
 
     return (
       <div className="container mx-auto px-4 py-8">

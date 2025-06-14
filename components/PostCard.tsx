@@ -7,7 +7,7 @@ interface PostCardProps {
   featured?: boolean
 }
 
-export default function PostCard({ post, featured }: PostCardProps) {
+export default function PostCard({ post, featured = false }: PostCardProps) {
   const formatDate = (dateString: string): string => {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',

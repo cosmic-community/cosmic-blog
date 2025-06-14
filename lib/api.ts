@@ -1,5 +1,5 @@
 import { cosmic, safeCosmicQuery } from './cosmic'
-import type { Post, Category, Author, CosmicResponse } from '../types'
+import type { Post, Category, Author } from '../types'
 
 // Fetch all posts with author and category data
 export async function getAllPosts(): Promise<Post[]> {
@@ -19,7 +19,7 @@ export async function getAllPosts(): Promise<Post[]> {
   }
 }
 
-// Fetch posts by category
+// Fetch posts by category ID
 export async function getPostsByCategory(categoryId: string): Promise<Post[]> {
   try {
     const response = await cosmic.objects
@@ -136,7 +136,7 @@ export async function getAuthorBySlug(slug: string): Promise<Author | null> {
   return result;
 }
 
-// Fetch posts by author
+// Fetch posts by author ID
 export async function getPostsByAuthor(authorId: string): Promise<Post[]> {
   try {
     const response = await cosmic.objects
