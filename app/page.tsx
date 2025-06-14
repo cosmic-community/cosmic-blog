@@ -1,7 +1,5 @@
 import { getAllPosts, getFeaturedPosts, getAllCategories } from '@/lib/api'
-import PostCard from '@/components/PostCard'
-import FeaturedPost from '@/components/FeaturedPost'
-import CategoryFilter from '@/components/CategoryFilter'
+import BlogContent from '@/components/BlogContent'
 import type { Post, Category } from '@/types'
 
 export default async function HomePage() {
@@ -22,45 +20,13 @@ export default async function HomePage() {
     )
   }
 
-  const mainFeatured = featuredPosts[0]
-  const otherFeatured = featuredPosts.slice(1)
-
   return (
     <div className="container mx-auto px-4 py-8">
-      {/* Hero Section with Featured Post */}
-      {mainFeatured && (
-        <section className="mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-8 text-center">Latest Stories</h1>
-          <FeaturedPost post={mainFeatured} />
-        </section>
-      )}
-
-      {/* Category Filter */}
-      <section className="mb-8">
-        <CategoryFilter categories={categories} />
-      </section>
-
-      {/* Other Featured Posts */}
-      {otherFeatured.length > 0 && (
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Featured Posts</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {otherFeatured.map((post) => (
-              <PostCard key={post.id} post={post} featured={true} />
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Recent Posts */}
-      <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Recent Posts</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.slice(0, 6).map((post) => (
-            <PostCard key={post.id} post={post} />
-          ))}
-        </div>
-      </section>
+      <BlogContent 
+        posts={posts} 
+        featuredPosts={featuredPosts} 
+        categories={categories} 
+      />
     </div>
   )
 }
