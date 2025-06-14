@@ -46,7 +46,7 @@ export default async function HomePage() {
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Featured Posts</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {otherFeatured.map((post) => (
-              <PostCard key={post.id} post={post} featured />
+              <PostCard key={post.id} post={post} featured={true} />
             ))}
           </div>
         </section>

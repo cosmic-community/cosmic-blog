@@ -1,4 +1,3 @@
-// app/posts/[slug]/page.tsx
 import { getPostBySlug, getAllPosts } from '@/lib/api'
 import { markdownToHtml } from '@/lib/markdown'
 import { notFound } from 'next/navigation'
@@ -113,7 +112,7 @@ export default async function PostPage({ params }: PageProps) {
       {/* Author Bio */}
       {author && (
         <div className="mt-12 pt-8 border-t border-gray-200">
-          <AuthorCard author={author} showBio />
+          <AuthorCard author={author} showBio={true} />
         </div>
       )}
     </article>

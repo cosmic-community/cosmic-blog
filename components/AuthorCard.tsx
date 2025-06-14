@@ -2,16 +2,17 @@ import { Author } from '../types'
 
 interface AuthorCardProps {
   author: Author
+  showBio?: boolean
 }
 
-export default function AuthorCard({ author }: AuthorCardProps) {
+export default function AuthorCard({ author, showBio = true }: AuthorCardProps) {
   return (
     <div className="bg-gray-50 rounded-lg p-6 mt-8">
       <div className="flex items-start space-x-4">
         {author.metadata.profile_photo && (
           <img
             src={`${author.metadata.profile_photo.imgix_url}?w=160&h=160&fit=crop&auto=format,compress`}
-            alt={author.metadata.name}
+            alt={author.metadata.name || author.title}
             className="w-16 h-16 rounded-full object-cover flex-shrink-0"
             width={64}
             height={64}
@@ -20,10 +21,10 @@ export default function AuthorCard({ author }: AuthorCardProps) {
         
         <div className="flex-1">
           <h3 className="text-lg font-semibold text-gray-900 mb-2">
-            About {author.metadata.name}
+            About {author.metadata.name || author.title}
           </h3>
           
-          {author.metadata.bio && (
+          {showBio && author.metadata.bio && (
             <p className="text-gray-600 mb-4 leading-relaxed">
               {author.metadata.bio}
             </p>

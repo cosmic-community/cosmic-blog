@@ -15,6 +15,14 @@ export default function FeaturedPost({ post }: FeaturedPostProps) {
     })
   }
 
+  const category = post.metadata.category
+  const author = post.metadata.author
+  const publicationDate = post.metadata.publication_date
+
+  if (!category || !author || !publicationDate) {
+    return null
+  }
+
   return (
     <article className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg overflow-hidden text-white mb-12">
       <div className="relative">
@@ -22,7 +30,7 @@ export default function FeaturedPost({ post }: FeaturedPostProps) {
           <div className="absolute inset-0">
             <img
               src={`${post.metadata.featured_image.imgix_url}?w=1600&h=800&fit=crop&auto=format,compress`}
-              alt={post.metadata.title}
+              alt={post.metadata.title || post.title}
               className="w-full h-full object-cover opacity-30"
               width={1600}
               height={800}
@@ -37,7 +45,7 @@ export default function FeaturedPost({ post }: FeaturedPostProps) {
               <span className="bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-sm font-medium">
                 ⭐ Featured Post
               </span>
-              <CategoryBadge category={post.metadata.category} variant="light" />
+              <CategoryBadge category={category} variant="light" />
             </div>
             
             <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
@@ -45,7 +53,7 @@ export default function FeaturedPost({ post }: FeaturedPostProps) {
                 href={`/posts/${post.slug}`}
                 className="hover:text-yellow-300 transition-colors"
               >
-                {post.metadata.title}
+                {post.metadata.title || post.title}
               </Link>
             </h1>
             
@@ -57,19 +65,19 @@ export default function FeaturedPost({ post }: FeaturedPostProps) {
             
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
-                {post.metadata.author.metadata.profile_photo && (
+                {author.metadata.profile_photo && (
                   <img
-                    src={`${post.metadata.author.metadata.profile_photo.imgix_url}?w=120&h=120&fit=crop&auto=format,compress`}
-                    alt={post.metadata.author.metadata.name}
+                    src={`${author.metadata.profile_photo.imgix_url}?w=120&h=120&fit=crop&auto=format,compress`}
+                    alt={author.metadata.name || author.title}
                     className="w-12 h-12 rounded-full object-cover border-2 border-white/20"
                     width={48}
                     height={48}
                   />
                 )}
                 <div>
-                  <p className="font-medium">{post.metadata.author.metadata.name}</p>
+                  <p className="font-medium">{author.metadata.name || author.title}</p>
                   <p className="text-sm text-gray-200">
-                    {formatDate(post.metadata.publication_date)}
+                    {formatDate(publicationDate)}
                   </p>
                 </div>
               </div>
