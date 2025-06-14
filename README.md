@@ -1,4 +1,3 @@
-<!-- README_START -->
 # Cosmic Blog
 
 A modern, responsive blog website built with Next.js 15 and powered by [Cosmic](https://www.cosmicjs.com). Features a clean design with category filtering, author profiles, and responsive layout optimized for all devices.
